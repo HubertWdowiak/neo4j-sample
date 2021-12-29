@@ -7,14 +7,14 @@ def create_app():
     app.app_context().push()
     app.secret_key = "super secret key"
 
-    app.register_blueprint(show.bp)
-    app.register_blueprint(auth.auth)
+#    app.register_blueprint(show.bp)
+#    app.register_blueprint(auth.auth)
     uri = 'neo4j+s://2fc6a12c.databases.neo4j.io'
     user = 'neo4j'
     password = 'jcpq1DW5IemYr1UIFn64RPNuvUP4TQLNcs2U5fNiruE'
     database = db.get_db()
 
-    @app.route('/index', methods=['POST', 'GET'])
+    @app.route('/', methods=['POST', 'GET'])
     def index():
         return render_template('base.html')
 
