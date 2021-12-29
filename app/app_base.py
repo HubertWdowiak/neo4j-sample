@@ -3,7 +3,7 @@ from app import show, auth, db
 
 
 def create_app():
-    app = Flask(__name__, template_folder='../templates', static_folder='../static')
+    app = Flask(__name__, template_folder='templates', static_folder='static')
     app.app_context().push()
     app.secret_key = "super secret key"
 
