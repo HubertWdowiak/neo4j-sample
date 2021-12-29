@@ -18,13 +18,13 @@ def create_app():
     def index():
         return render_template('base.html')
 
-   # @app.route('/filter', methods=['POST', 'GET'])
-    #def filter_actor():
-     #   if request.method == 'GET':
-      #      return render_template('list_people.html')
+    @app.route('/filter', methods=['POST', 'GET'])
+    def filter_actor():
+        if request.method == 'GET':
+            return render_template('list_people.html')
 
-       # name = request.form.get("name")
-        #data = db.query(f'Match (p:Person) WHERE TOLOWER(p.name) CONTAINS TOLOWER("{name}") Return p')
-        r#eturn render_template('list_people.html', data=data)
+        name = request.form.get("name")
+        data = db.query(f'Match (p:Person) WHERE TOLOWER(p.name) CONTAINS TOLOWER("{name}") Return p')
+        return render_template('list_people.html', data=data)
 
     return app
