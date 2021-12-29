@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block content %}
+
+    <div class="leftnav">
+        <form class="form-inline" method="POST" action="{{ url_for('show.get_all_people') }}">
+            <label for="filter">Filter</label>
+            <input name="filter" id="filter">
+            <div class="slidecontainer">
+                <span>Choose minimum rate</span>
+                <span>
+                    <p>
+                        0<input type="range" value={{ rate_range }} min="0" max="5" class="slider" name="myRange">5
+                    </p>
+                </span>
+            </div>
+{#                <select name="comp_select" class="custom-select" style="width:200px;">#}
+{#                  {% for genre in genres %}#}
+{#                        <option value="{{ genre.name }}">{{ genre.name }}</option>#}
+{#                  {% endfor %}#}
+{#                </select>#}
+            <input type="submit" value="Filter" class="button">
+        </form>
+    </div>
+
+    <section>
+      <h1>Actors and directors</h1>
+      <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Last Name</th>
+              <th>Year Of Birth</th>
+              <th>Rate</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            {% for record in data %}
+                <tr style="cursor: pointer" onclick="window.location.href='{{ url_for( 'show.get_single_person', person_id=record[3]['id']) }}';">
+                        <td>{{ record[0]['name'] }}</td>
+                        <td>{{ record[0]['lastname'] }}</td>
+                        <td>{{ record[0]['yob'] }}</td>
+                        <td>
+                            {% for star in range(record[1]['avg']|int) %}
+                                <span id="star_{{ loop.index }}" class="fa fa-star checked" style="align-items: center"></span>
+                            {% endfor %}
+                            {% for star in range(5 - record[1]['avg']|int) %}
+                                <span id="star_{{ record[1]['avg']|int + loop.index}}" class="fa fa-star" ></span>
+                            {% endfor %}
+                            <p>{{ record[1]['avg'] }} average based on {{ record[2]['num_of_reviews'] }} reviews.</p>
+                        </td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+{% endblock %}
+
+<script>
+    $(function() {
+      $('#star_1').hover(function() {
+        $('#star_2').css('background-color', 'yellow');
+      }, function() {
+        // on mouseout, reset the background colour
+        $('#star_2').css('background-color', '');
+      });
+});
+</script>

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+    <button  style="cursor:pointer; color: white; font-weight: bold; margin: 20px; padding: 20px; width: 200px;
+             background-color: rgba(0, 0, 0, 0.5); border-radius: 20px"
+             onclick="window.location.href='{{ url_for("show.get_all_people") }}';">HOME</button>
+
+    <button  style="cursor:pointer; color: white; font-weight: bold; margin: 20px; padding: 20px; width: 200px;
+         background-color: rgba(255, 0, 0, 0.5); border-radius: 20px"
+         onclick="window.location.href='{{ url_for("auth.logout") }}';">LOGOUT</button>
+
+
+    {% if person %}
+    <div class="personal-details">
+
+    <div class="star-wrapper">
+
+    {% for i in range(5) %}
+        <a class="fas fa-star s{{ i }}" onclick=" for (let z = 0; z < document.getElementsByClassName('fas').length; z++) {
+                document.getElementsByClassName('fas')[z].style['color'] = '';
+            }
+            window.location.href='{{ url_for('show.rate', rate=5-i, person_id=request.view_args['person_id']) }}'
+            this.style.color='gold'"
+
+            {% if rate==i %}
+                style="color: gold"
+            {% endif %}
+        >
+
+        </a>
+
+    {% endfor %}
+    </div>
+        <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
+        <span>{{ person[0]['name'] }} {{ person[0]['lastname'] }}</span>
+        <span>ur. {{ person[0]['yob'] }}</span>
+        <p>{{ person[1]['avg'] }} average based on {{ person[2]['count'] }} reviews.</p>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                {% for record in data %}
+                    <tr>
+                        <td>{{ record[0]['title'] }}</td>
+                        <td>{{ record[0]['year'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+         <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+               <tr>
+                   <td style='text-align: center' colspan="4">NO DATA</td>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}
