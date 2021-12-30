@@ -55,7 +55,8 @@
                             {% for star in range(5 - record[1]['avg']|int) %}
                                 <span id="star_{{ record[1]['avg']|int + loop.index}}" class="fa fa-star" ></span>
                             {% endfor %}
-                            <p>{{ record[1]['avg'] }} average based on {{ record[2]['num_of_reviews'] }} reviews.</p>
+
+                            <p>{{ '%0.2f'| format(record[1]['avg']|float) }} average based on {{ record[2]['num_of_reviews'] }} reviews.</p>
                         </td>
                 </tr>
             {% endfor %}

@@ -39,7 +39,7 @@
         <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
         <span>{{ person[0]['name'] }} {{ person[0]['lastname'] }}</span>
         <span>ur. {{ person[0]['yob'] }}</span>
-        <p>{{ person[1]['avg'] }} average based on {{ person[2]['count'] }} reviews.</p>
+        <p>{{ '%0.2f'| format(record[1]['avg']|float) }} average based on {{ person[2]['count'] }} reviews.</p>
     </div>
     <div class="tbl-content">
         <table cellpadding="0" cellspacing="0" border="0">
