@@ -3,6 +3,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<button  style="cursor:pointer; color: white; font-weight: bold; margin: 20px; padding: 20px; width: 200px; alignment: left;
+         background-color: rgba(255, 0, 0, 0.5); border-radius: 20px"
+     onclick="window.location.href='{{ url_for("auth.logout") }}';">LOGOUT</button>
+
+
 <nav>
   <h1>The Great Actors Database</h1>
 </nav>

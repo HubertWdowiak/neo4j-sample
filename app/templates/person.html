@@ -10,11 +10,6 @@
              background-color: rgba(0, 0, 0, 0.5); border-radius: 20px"
              onclick="window.location.href='{{ url_for("show.get_all_people") }}';">HOME</button>
 
-    <button  style="cursor:pointer; color: white; font-weight: bold; margin: 20px; padding: 20px; width: 200px;
-         background-color: rgba(255, 0, 0, 0.5); border-radius: 20px"
-         onclick="window.location.href='{{ url_for("auth.logout") }}';">LOGOUT</button>
-
-
     {% if person %}
     <div class="personal-details">
 
