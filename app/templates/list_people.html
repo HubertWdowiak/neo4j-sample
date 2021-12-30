@@ -17,11 +17,6 @@
                     </p>
                 </span>
             </div>
-{#                <select name="comp_select" class="custom-select" style="width:200px;">#}
-{#                  {% for genre in genres %}#}
-{#                        <option value="{{ genre.name }}">{{ genre.name }}</option>#}
-{#                  {% endfor %}#}
-{#                </select>#}
             <input type="submit" value="Filter" class="button">
         </form>
     </div>
@@ -70,7 +65,6 @@
       $('#star_1').hover(function() {
         $('#star_2').css('background-color', 'yellow');
       }, function() {
-        // on mouseout, reset the background colour
         $('#star_2').css('background-color', '');
       });
 });

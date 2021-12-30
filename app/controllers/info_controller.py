@@ -1,7 +1,7 @@
-from app import db
+from app.utils import db
 from flask import Blueprint, render_template, request, g, session
 
-from app.auth import login_required
+from app.controllers.auth_controller import login_required
 
 bp = Blueprint('show', __name__, url_prefix='/show')
 
@@ -70,6 +70,4 @@ def get_all_people():
                                     f'Return a, 0 as avg, 0 as num_of_reviews, ID(a) as id')
     data.extend(data_without_reviews)
     data = [e for e in data if e[1]['avg'] >= float(rate_range)]
-
-    genres = db.query(f'MATCH (g:Genre) Return g')
-    return render_template('list_people.html', data=data, genres=genres, rate_range=rate_range)
+    return render_template('list_people.html', data=data, rate_range=rate_range)
