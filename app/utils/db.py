@@ -6,13 +6,10 @@ import os
 def get_db():
     if 'db' not in g:
         g.db = GraphDatabase.driver(
-            # os.environ['URI'],
-            'neo4j+s://2fc6a12c.databases.neo4j.io',
+            os.environ['URI'],
             auth=(
-                # os.environ['USER'],
-                'neo4j',
-                # os.environ['PASSWORD']
-            "jcpq1DW5IemYr1UIFn64RPNuvUP4TQLNcs2U5fNiruE"
+                os.environ['USER'],
+                os.environ['PASSWORD']
             )
         )
     return g.db
