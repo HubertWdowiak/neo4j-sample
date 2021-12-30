@@ -11,8 +11,4 @@ def create_app():
     app.register_blueprint(info_controller.bp)
     app.register_blueprint(auth_controller.auth)
 
-    @app.route('/', methods=['POST', 'GET'])
-    def index():
-        return render_template('base.html')
-
     return app

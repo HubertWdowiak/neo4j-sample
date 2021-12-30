@@ -50,7 +50,7 @@ def get_single_person(person_id: str):
     return render_template('person.html', person=person, data=data, rate=5 - rate)
 
 
-@bp.route('people', methods=['GET', 'POST'])
+@bp.route('/', methods=['GET', 'POST'])
 @login_required
 def get_all_people():
     word_filter = request.form.get('filter')
